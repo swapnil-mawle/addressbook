@@ -18,6 +18,14 @@ pipeline {
                 echo "Test the code"
                 sh "mvn test"
             }
+		post {
+			always 
+				{
+					junit 'target/surefile-reports/*.xml'
+			}
+			}
+		
+	
         }
          stage('Package') {//dev
         agent {label 'linux_slave'}
